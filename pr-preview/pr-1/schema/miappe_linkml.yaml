@@ -1,0 +1,2203 @@
+name: miappe-linkml
+description: A LinkML representation of the MIAPPE (Minimum Information About a Plant
+  Phenotyping Experiment) v1.1 checklist and data model. The structure follows the
+  MIAPPE entity relationship diagram (Investigation > Study > Observation Unit > Sample)
+  together with the supporting entities (Person, Publication, Biological Material,
+  Environment Parameter, Experimental Factor, Event, Data File and Observed Variable).
+  Each slot records its MIAPPE "codename" in a comment, and enumerations are derived
+  from the MIAPPE checklist and its appendices.
+title: MIAPPE LinkML
+see_also:
+- https://github.com/MIAPPE/MIAPPE
+- https://www.miappe.org/
+id: https://w3id.org/sierra-moxon/miappe-linkml
+imports:
+- linkml:types
+license: Apache-2.0
+prefixes:
+  miappe_linkml:
+    prefix_prefix: miappe_linkml
+    prefix_reference: https://w3id.org/sierra-moxon/miappe-linkml/
+  linkml:
+    prefix_prefix: linkml
+    prefix_reference: https://w3id.org/linkml/
+  schema:
+    prefix_prefix: schema
+    prefix_reference: http://schema.org/
+  PATO:
+    prefix_prefix: PATO
+    prefix_reference: http://purl.obolibrary.org/obo/PATO_
+  PO:
+    prefix_prefix: PO
+    prefix_reference: http://purl.obolibrary.org/obo/PO_
+  TO:
+    prefix_prefix: TO
+    prefix_reference: http://purl.obolibrary.org/obo/TO_
+  NCBITaxon:
+    prefix_prefix: NCBITaxon
+    prefix_reference: http://purl.obolibrary.org/obo/NCBITaxon_
+  EO:
+    prefix_prefix: EO
+    prefix_reference: http://purl.obolibrary.org/obo/EO_
+  CO_715:
+    prefix_prefix: CO_715
+    prefix_reference: http://www.cropontology.org/rdf/CO_715_
+  CO_322:
+    prefix_prefix: CO_322
+    prefix_reference: http://www.cropontology.org/rdf/CO_322_
+  XEO:
+    prefix_prefix: XEO
+    prefix_reference: http://purl.obolibrary.org/obo/XEO_
+  dcterms:
+    prefix_prefix: dcterms
+    prefix_reference: http://purl.org/dc/terms/
+  xsd:
+    prefix_prefix: xsd
+    prefix_reference: http://www.w3.org/2001/XMLSchema#
+default_prefix: miappe_linkml
+default_range: string
+types:
+  string:
+    name: string
+    definition_uri: https://w3id.org/linkml/String
+    description: A character string
+    notes:
+    - In RDF serializations, a slot with range of string is treated as a literal or
+      type xsd:string. If you are authoring schemas in LinkML YAML, the type is referenced
+      with the lower case "string".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Text
+    base: str
+    uri: xsd:string
+  integer:
+    name: integer
+    definition_uri: https://w3id.org/linkml/Integer
+    description: An integer
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "integer".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Integer
+    base: int
+    uri: xsd:integer
+  boolean:
+    name: boolean
+    definition_uri: https://w3id.org/linkml/Boolean
+    description: A binary (true or false) value
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "boolean".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Boolean
+    base: Bool
+    uri: xsd:boolean
+    repr: bool
+  float:
+    name: float
+    definition_uri: https://w3id.org/linkml/Float
+    description: A real number that conforms to the xsd:float specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "float".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Float
+    base: float
+    uri: xsd:float
+  double:
+    name: double
+    definition_uri: https://w3id.org/linkml/Double
+    description: A real number that conforms to the xsd:double specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "double".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    close_mappings:
+    - schema:Float
+    base: float
+    uri: xsd:double
+  decimal:
+    name: decimal
+    definition_uri: https://w3id.org/linkml/Decimal
+    description: A real number with arbitrary precision that conforms to the xsd:decimal
+      specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "decimal".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    broad_mappings:
+    - schema:Number
+    base: Decimal
+    uri: xsd:decimal
+  time:
+    name: time
+    definition_uri: https://w3id.org/linkml/Time
+    description: A time object represents a (local) time of day, independent of any
+      particular day
+    notes:
+    - URI is dateTime because OWL reasoners do not work with straight date or time
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "time".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Time
+    base: XSDTime
+    uri: xsd:time
+    repr: str
+  date:
+    name: date
+    definition_uri: https://w3id.org/linkml/Date
+    description: a date (year, month and day) in an idealized calendar
+    notes:
+    - URI is dateTime because OWL reasoners don't work with straight date or time
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "date".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Date
+    base: XSDDate
+    uri: xsd:date
+    repr: str
+  datetime:
+    name: datetime
+    definition_uri: https://w3id.org/linkml/Datetime
+    description: The combination of a date and time
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "datetime".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:DateTime
+    base: XSDDateTime
+    uri: xsd:dateTime
+    repr: str
+  date_or_datetime:
+    name: date_or_datetime
+    definition_uri: https://w3id.org/linkml/DateOrDatetime
+    description: Either a date or a datetime
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "date_or_datetime".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: linkml:DateOrDatetime
+    repr: str
+  uriorcurie:
+    name: uriorcurie
+    definition_uri: https://w3id.org/linkml/Uriorcurie
+    description: a URI or a CURIE
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "uriorcurie".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: URIorCURIE
+    uri: xsd:anyURI
+    repr: str
+  curie:
+    name: curie
+    definition_uri: https://w3id.org/linkml/Curie
+    conforms_to: https://www.w3.org/TR/curie/
+    description: a compact URI
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "curie".
+    comments:
+    - in RDF serializations this MUST be expanded to a URI
+    - in non-RDF serializations MAY be serialized as the compact representation
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: Curie
+    uri: xsd:string
+    repr: str
+  uri:
+    name: uri
+    definition_uri: https://w3id.org/linkml/Uri
+    conforms_to: https://www.ietf.org/rfc/rfc3987.txt
+    description: a complete URI
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "uri".
+    comments:
+    - in RDF serializations a slot with range of uri is treated as a literal or type
+      xsd:anyURI unless it is an identifier or a reference to an identifier, in which
+      case it is translated directly to a node
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    close_mappings:
+    - schema:URL
+    base: URI
+    uri: xsd:anyURI
+    repr: str
+  ncname:
+    name: ncname
+    definition_uri: https://w3id.org/linkml/Ncname
+    description: Prefix part of CURIE
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "ncname".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: NCName
+    uri: xsd:string
+    repr: str
+  objectidentifier:
+    name: objectidentifier
+    definition_uri: https://w3id.org/linkml/Objectidentifier
+    description: A URI or CURIE that represents an object in the model.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "objectidentifier".
+    comments:
+    - Used for inheritance and type checking
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: ElementIdentifier
+    uri: shex:iri
+    repr: str
+  nodeidentifier:
+    name: nodeidentifier
+    definition_uri: https://w3id.org/linkml/Nodeidentifier
+    description: A URI, CURIE or BNODE that represents a node in a model.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "nodeidentifier".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: NodeIdentifier
+    uri: shex:nonLiteral
+    repr: str
+  jsonpointer:
+    name: jsonpointer
+    definition_uri: https://w3id.org/linkml/Jsonpointer
+    conforms_to: https://datatracker.ietf.org/doc/html/rfc6901
+    description: A string encoding a JSON Pointer. The value of the string MUST conform
+      to JSON Point syntax and SHOULD dereference to a valid object within the current
+      instance document when encoded in tree form.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "jsonpointer".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+  jsonpath:
+    name: jsonpath
+    definition_uri: https://w3id.org/linkml/Jsonpath
+    conforms_to: https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html
+    description: A string encoding a JSON Path. The value of the string MUST conform
+      to JSON Point syntax and SHOULD dereference to zero or more valid objects within
+      the current instance document when encoded in tree form.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "jsonpath".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+  sparqlpath:
+    name: sparqlpath
+    definition_uri: https://w3id.org/linkml/Sparqlpath
+    conforms_to: https://www.w3.org/TR/sparql11-query/#propertypaths
+    description: A string encoding a SPARQL Property Path. The value of the string
+      MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects
+      within the current instance document when encoded as RDF.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "sparqlpath".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+enums:
+  LicenseEnum:
+    name: LicenseEnum
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/LicenseEnum
+    description: License for the reuse of the data associated with an investigation.
+      The Creative Commons licenses are recommended.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    permissible_values:
+      cc_by_4_0:
+        text: cc_by_4_0
+        description: Creative Commons Attribution 4.0 International.
+      cc_by_sa_4_0:
+        text: cc_by_sa_4_0
+        description: Creative Commons Attribution-ShareAlike 4.0 International.
+      cc_by_nc_4_0:
+        text: cc_by_nc_4_0
+        description: Creative Commons Attribution-NonCommercial 4.0 International.
+      cc_by_nd_4_0:
+        text: cc_by_nd_4_0
+        description: Creative Commons Attribution-NoDerivatives 4.0 International.
+      cc0_1_0:
+        text: cc0_1_0
+        description: Creative Commons Public Domain Dedication.
+      unreported:
+        text: unreported
+        description: The license was not reported.
+  ObservationUnitTypeEnum:
+    name: ObservationUnitTypeEnum
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/ObservationUnitTypeEnum
+    description: Type of observation unit. Use of other observation unit types is
+      possible but not recommended.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    permissible_values:
+      study:
+        text: study
+        description: The whole study as an observation unit.
+      block:
+        text: block
+        description: A block in the experimental design.
+      sub_block:
+        text: sub_block
+        description: A sub-block in the experimental design.
+      plot:
+        text: plot
+        description: A plot in the experimental design.
+      sub_plot:
+        text: sub_plot
+        description: A sub-plot in the experimental design.
+      pot:
+        text: pot
+        description: A pot containing one or more plants.
+      plant:
+        text: plant
+        description: An individual plant.
+  ExperimentalFactorTypeEnum:
+    name: ExperimentalFactorTypeEnum
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/ExperimentalFactorTypeEnum
+    description: Non-exhaustive list of experimental factor types, from MIAPPE Appendix
+      II. Most map to the Plant Environment Ontology (EO).
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    permissible_values:
+      seasonal_environment:
+        text: seasonal_environment
+        description: A plant treatment involving an exposure to given conditions of
+          regional seasons.
+        meaning: EO:0007038
+      air_treatment_regime:
+        text: air_treatment_regime
+        description: Exposure to wind/air with varying degree of temperature.
+        meaning: EO:0007161
+      soil_temperature_regime:
+        text: soil_temperature_regime
+        description: Exposure to varying degree of soil temperature.
+        meaning: EO:0007161
+      soil_treatment_regime:
+        text: soil_treatment_regime
+        description: Growing plants and exposing them to soil growth media with varying
+          contents.
+        meaning: EO:0007161
+      antibiotic_regime:
+        text: antibiotic_regime
+        description: A chemical treatment involving the use of antibiotics.
+        meaning: EO:0007041
+      chemical_administration:
+        text: chemical_administration
+        description: An abiotic plant treatment involving the application of chemicals.
+        meaning: EO:0007189
+      biotic_treatment:
+        text: biotic_treatment
+        description: Application of a biotic factor such as a microbe, insect, animal
+          or plant.
+        meaning: EO:0007357
+      fertilizer_regime:
+        text: fertilizer_regime
+        description: A plant nutrient treatment involving the use of a fertilizer.
+        meaning: EO:0007085
+      fungicide_regime:
+        text: fungicide_regime
+        description: Application of a fungicide.
+        meaning: EO:0007268
+      gaseous_regime:
+        text: gaseous_regime
+        description: Application of a gas or a combination of gasses.
+        meaning: EO:0007023
+      gravity:
+        text: gravity
+        description: Use of gravity to study responses in presence, absence or modified
+          levels of gravity.
+        meaning: EO:0007146
+      plant_hormone_regime:
+        text: plant_hormone_regime
+        description: Use of growth hormones.
+        meaning: EO:0007165
+      herbicide_regime:
+        text: herbicide_regime
+        description: Application of a herbicide.
+        meaning: EO:0007183
+      mechanical_treatment:
+        text: mechanical_treatment
+        description: Application of a mechanical force.
+        meaning: EO:0007373
+      chemical_regime:
+        text: chemical_regime
+        description: Application of inorganic chemicals, nutriment or organic chemicals
+          as a supplement.
+        meaning: EO:0007044
+      humidity_regimen:
+        text: humidity_regimen
+        description: Exposure to varying degree of humidity.
+        meaning: EO:0007359
+      radiation_regime:
+        text: radiation_regime
+        description: Exposure to a radiation type, intensity or quantity (light, UV-B,
+          X-ray).
+        meaning: EO:0007151
+      rainfall_regime:
+        text: rainfall_regime
+        description: Exposure to a given amount of rainfall.
+        meaning: EO:0007181
+      salt_regime:
+        text: salt_regime
+        description: Use of salts as a supplement to growth media.
+        meaning: EO:0007185
+      watering_regime:
+        text: watering_regime
+        description: Exposure to watering frequencies.
+        meaning: EO:0007383
+      water_temperature_regime:
+        text: water_temperature_regime
+        description: Exposure to water with varying degree of temperature.
+        meaning: EO:0007160
+      standing_water_regime:
+        text: standing_water_regime
+        description: Exposure to standing water during a plant's life span.
+        meaning: EO:0007282
+      pesticide_regime:
+        text: pesticide_regime
+        description: Application of a pesticide.
+        meaning: EO:0007167
+      ph_regime:
+        text: ph_regime
+        description: Exposure to varying levels of pH of the growth media.
+        meaning: EO:0007171
+      other_perturbation:
+        text: other_perturbation
+        description: Any other perturbation not covered by the listed factor types.
+slots:
+  investigation_id:
+    name: investigation_id
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/investigation_id
+    description: Identifier comprising the unique name of the institution/database
+      hosting the submission of the investigation data, and the accession number of
+      the investigation in that institution.
+    comments:
+    - 'MIAPPE codename: investigationId'
+    examples:
+    - value: EBI:12345678
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    mappings:
+    - schema:identifier
+    slot_uri: schema:identifier
+    identifier: true
+    owner: Investigation
+    domain_of:
+    - Investigation
+    range: uriorcurie
+    required: true
+  investigation_title:
+    name: investigation_title
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/investigation_title
+    description: Human-readable string summarising the investigation.
+    comments:
+    - 'MIAPPE codename: investigationTitle'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    mappings:
+    - dcterms:title
+    slot_uri: dcterms:title
+    owner: Investigation
+    domain_of:
+    - Investigation
+    range: string
+    required: true
+  investigation_description:
+    name: investigation_description
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/investigation_description
+    description: Human-readable text describing the investigation in more detail.
+    comments:
+    - 'MIAPPE codename: investigationDescription'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    mappings:
+    - dcterms:description
+    slot_uri: dcterms:description
+    owner: Investigation
+    domain_of:
+    - Investigation
+    range: string
+  submission_date:
+    name: submission_date
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/submission_date
+    description: Date of submission of the dataset presently being described to a
+      host repository (ISO 8601, optional time zone).
+    comments:
+    - 'MIAPPE codename: submissionDate'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:submission_date
+    owner: Investigation
+    domain_of:
+    - Investigation
+    range: date_or_datetime
+  public_release_date:
+    name: public_release_date
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/public_release_date
+    description: Date of first public release of the dataset presently being described
+      (ISO 8601, optional time zone).
+    comments:
+    - 'MIAPPE codename: publicReleaseDate'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:public_release_date
+    owner: Investigation
+    domain_of:
+    - Investigation
+    range: date_or_datetime
+  license:
+    name: license
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/license
+    description: License for the reuse of the data associated with this investigation.
+      The Creative Commons licenses cover most use cases and are recommended.
+    comments:
+    - 'MIAPPE codename: license'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:license
+    owner: Investigation
+    domain_of:
+    - Investigation
+    range: LicenseEnum
+  miappe_version:
+    name: miappe_version
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/miappe_version
+    description: The version of MIAPPE used.
+    comments:
+    - 'MIAPPE codename: miappeVersion'
+    examples:
+    - value: '1.1'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:miappe_version
+    owner: Investigation
+    domain_of:
+    - Investigation
+    range: string
+    required: true
+  associated_publications:
+    name: associated_publications
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/associated_publications
+    description: Publications where the investigation is described. Use of DOIs is
+      recommended.
+    comments:
+    - 'MIAPPE codename: associatedPublication'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:associated_publications
+    owner: Investigation
+    domain_of:
+    - Investigation
+    range: Publication
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  associated_publication:
+    name: associated_publication
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/associated_publication
+    description: An identifier for a literature publication where the investigation
+      is described. Use of DOIs is recommended.
+    comments:
+    - 'MIAPPE codename: associatedPublication'
+    examples:
+    - value: doi:10.1371/journal.pone.0071377
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:associated_publication
+    owner: Publication
+    domain_of:
+    - Publication
+    range: uriorcurie
+  study_id:
+    name: study_id
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/study_id
+    description: Unique identifier comprising the name or identifier for the institution/database
+      hosting the submission of the study data, and the identifier of the study in
+      that institution.
+    comments:
+    - 'MIAPPE codename: studyId'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    mappings:
+    - schema:identifier
+    slot_uri: schema:identifier
+    identifier: true
+    owner: Study
+    domain_of:
+    - Study
+    range: uriorcurie
+    required: true
+  study_title:
+    name: study_title
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/study_title
+    description: Name, human-readable text summarising the study.
+    comments:
+    - 'MIAPPE codename: studyTitle'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    mappings:
+    - dcterms:title
+    slot_uri: dcterms:title
+    owner: Study
+    domain_of:
+    - Study
+    range: string
+    required: true
+  study_description:
+    name: study_description
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/study_description
+    description: Human-readable text describing the study.
+    comments:
+    - 'MIAPPE codename: studyDescription'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    mappings:
+    - dcterms:description
+    slot_uri: dcterms:description
+    owner: Study
+    domain_of:
+    - Study
+    range: string
+  study_start_date:
+    name: study_start_date
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/study_start_date
+    description: Date and, if relevant, time when the experiment started.
+    comments:
+    - 'MIAPPE codename: studyStartDate'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:study_start_date
+    owner: Study
+    domain_of:
+    - Study
+    range: date_or_datetime
+    required: true
+  study_end_date:
+    name: study_end_date
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/study_end_date
+    description: Date and, if relevant, time when the experiment ended.
+    comments:
+    - 'MIAPPE codename: studyEndDate'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:study_end_date
+    owner: Study
+    domain_of:
+    - Study
+    range: date_or_datetime
+  contact_institution:
+    name: contact_institution
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/contact_institution
+    description: Name and address of the institution responsible for the study.
+    comments:
+    - 'MIAPPE codename: contactInst'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:contact_institution
+    owner: Study
+    domain_of:
+    - Study
+    range: string
+    required: true
+  location_country:
+    name: location_country
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/location_country
+    description: The country where the experiment took place, either as a full name
+      or preferably as a 2-letter code (ISO 3166).
+    comments:
+    - 'MIAPPE codename: locationCountry'
+    examples:
+    - value: FR
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:location_country
+    owner: Study
+    domain_of:
+    - Study
+    range: string
+    required: true
+  site_name:
+    name: site_name
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/site_name
+    description: The name of the natural site, experimental field, greenhouse, phenotyping
+      facility, etc. where the experiment took place.
+    comments:
+    - 'MIAPPE codename: siteName'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:site_name
+    owner: Study
+    domain_of:
+    - Study
+    range: string
+    required: true
+  location_latitude:
+    name: location_latitude
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/location_latitude
+    description: Latitude of the experimental site in degrees, in decimal format (ISO
+      6709).
+    comments:
+    - 'MIAPPE codename: locationLatitude'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:location_latitude
+    owner: Study
+    domain_of:
+    - Study
+    range: float
+  location_longitude:
+    name: location_longitude
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/location_longitude
+    description: Longitude of the experimental site in degrees, in decimal format
+      (ISO 6709).
+    comments:
+    - 'MIAPPE codename: locationLongitude'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:location_longitude
+    owner: Study
+    domain_of:
+    - Study
+    range: float
+  location_altitude:
+    name: location_altitude
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/location_altitude
+    description: Altitude of the experimental site, provided in metres (m).
+    comments:
+    - 'MIAPPE codename: locationAltitude'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:location_altitude
+    owner: Study
+    domain_of:
+    - Study
+    range: string
+  experimental_design_description:
+    name: experimental_design_description
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/experimental_design_description
+    description: Short description of the experimental design, possibly including
+      statistical design.
+    comments:
+    - 'MIAPPE codename: expeDesignDesc'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:experimental_design_description
+    owner: Study
+    domain_of:
+    - Study
+    range: string
+    required: true
+  experimental_design_type:
+    name: experimental_design_type
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/experimental_design_type
+    description: Type of experimental design of the study, in the form of an accession
+      number from the Crop Ontology (subclass of CO_715:0000003).
+    comments:
+    - 'MIAPPE codename: expeDesignType'
+    examples:
+    - value: CO_715:0000145
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:experimental_design_type
+    owner: Study
+    domain_of:
+    - Study
+    range: uriorcurie
+  observation_unit_level_hierarchy:
+    name: observation_unit_level_hierarchy
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/observation_unit_level_hierarchy
+    description: Hierarchy of the different levels of repetitions between each other.
+    comments:
+    - 'MIAPPE codename: obsUnitLevelHierarchy'
+    examples:
+    - value: block>rep>plot
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:observation_unit_level_hierarchy
+    owner: Study
+    domain_of:
+    - Study
+    range: string
+  observation_unit_description:
+    name: observation_unit_description
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/observation_unit_description
+    description: General description of the observation units in the study.
+    comments:
+    - 'MIAPPE codename: obsUnitDesc'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:observation_unit_description
+    owner: Study
+    domain_of:
+    - Study
+    range: string
+    required: true
+  growth_facility_description:
+    name: growth_facility_description
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/growth_facility_description
+    description: Short description of the facility in which the study was carried
+      out.
+    comments:
+    - 'MIAPPE codename: growthFacilityDesc'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:growth_facility_description
+    owner: Study
+    domain_of:
+    - Study
+    range: string
+    required: true
+  growth_facility_type:
+    name: growth_facility_type
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/growth_facility_type
+    description: Type of growth facility in which the study was carried out, in the
+      form of an accession number from the Crop Ontology (subclass of CO_715:0000005).
+    comments:
+    - 'MIAPPE codename: growthFacilityType'
+    examples:
+    - value: CO_715:0000162
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:growth_facility_type
+    owner: Study
+    domain_of:
+    - Study
+    range: uriorcurie
+  cultural_practices:
+    name: cultural_practices
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/cultural_practices
+    description: General description of the cultural practices of the study.
+    comments:
+    - 'MIAPPE codename: culturalPractice'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:cultural_practices
+    owner: Study
+    domain_of:
+    - Study
+    range: string
+  experimental_design_map:
+    name: experimental_design_map
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/experimental_design_map
+    description: Representation of the experimental design (URL or file name).
+    comments:
+    - 'MIAPPE codename: expeDesignMap'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:experimental_design_map
+    owner: Study
+    domain_of:
+    - Study
+    range: uri
+    multivalued: true
+  person_id:
+    name: person_id
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/person_id
+    description: An identifier for the data submitter. If that submitter is an individual,
+      ORCID identifiers are recommended.
+    comments:
+    - 'MIAPPE codename: personId'
+    examples:
+    - value: orcid.org/0000-0001-6494-0008
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:person_id
+    owner: Person
+    domain_of:
+    - Person
+    range: uriorcurie
+  person_name:
+    name: person_name
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/person_name
+    description: The name of the person (either full name or as used in scientific
+      publications).
+    comments:
+    - 'MIAPPE codename: personName'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    mappings:
+    - schema:name
+    slot_uri: schema:name
+    owner: Person
+    domain_of:
+    - Person
+    range: string
+    required: true
+  person_email:
+    name: person_email
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/person_email
+    description: The electronic mail address of the person.
+    comments:
+    - 'MIAPPE codename: personEmail'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    mappings:
+    - schema:email
+    slot_uri: schema:email
+    owner: Person
+    domain_of:
+    - Person
+    range: string
+    pattern: ^\S+@[\S+\.]+\S+
+  person_roles:
+    name: person_roles
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/person_roles
+    description: Type of contribution of the person to the investigation.
+    comments:
+    - 'MIAPPE codename: personRole'
+    examples:
+    - value: corresponding author
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:person_roles
+    owner: Person
+    domain_of:
+    - Person
+    range: string
+    required: true
+    multivalued: true
+  person_affiliations:
+    name: person_affiliations
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/person_affiliations
+    description: The institution the person belongs to.
+    comments:
+    - 'MIAPPE codename: personAffiliation'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:person_affiliations
+    owner: Person
+    domain_of:
+    - Person
+    range: string
+    required: true
+    multivalued: true
+  data_file_link:
+    name: data_file_link
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/data_file_link
+    description: Link to the data file (or digital object) in a public database or
+      in a persistent institutional repository; or identifier of the data file when
+      submitted together with the MIAPPE submission.
+    comments:
+    - 'MIAPPE codename: dataFileLink'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:data_file_link
+    owner: DataFile
+    domain_of:
+    - DataFile
+    range: uri
+    required: true
+  data_file_description:
+    name: data_file_description
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/data_file_description
+    description: Description of the format of the data file. May be a standard file
+      format name, or a description of the organization of the data in a tabular file.
+    comments:
+    - 'MIAPPE codename: dataFileDesc'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:data_file_description
+    owner: DataFile
+    domain_of:
+    - DataFile
+    range: string
+    required: true
+  data_file_version:
+    name: data_file_version
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/data_file_version
+    description: The version of the dataset (the actual data).
+    comments:
+    - 'MIAPPE codename: dataFileVersion'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:data_file_version
+    owner: DataFile
+    domain_of:
+    - DataFile
+    range: string
+  biological_material_id:
+    name: biological_material_id
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/biological_material_id
+    description: Code used to identify the biological material in the data file. Should
+      be unique within the Investigation.
+    comments:
+    - 'MIAPPE codename: biologicalMaterialId'
+    examples:
+    - value: INRA:W95115_inra_2001
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:biological_material_id
+    identifier: true
+    owner: BiologicalMaterial
+    domain_of:
+    - BiologicalMaterial
+    range: uriorcurie
+    required: true
+  biological_material_external_ids:
+    name: biological_material_external_ids
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/biological_material_external_ids
+    description: One to many identifiers for the biological material. Can include
+      EBI Biosamples ID. URIs are recommended when possible.
+    comments:
+    - 'MIAPPE codename: biologicalMaterialExtId'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:biological_material_external_ids
+    owner: BiologicalMaterial
+    domain_of:
+    - BiologicalMaterial
+    range: uriorcurie
+    multivalued: true
+  organism:
+    name: organism
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/organism
+    description: An identifier for the organism at the species level. Use of the NCBI
+      taxon ID is recommended.
+    comments:
+    - 'MIAPPE codename: organism'
+    examples:
+    - value: NCBITaxon:4577
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:organism
+    owner: BiologicalMaterial
+    domain_of:
+    - BiologicalMaterial
+    range: uriorcurie
+    required: true
+  genus:
+    name: genus
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/genus
+    description: Genus name for the organism under study, according to standard scientific
+      nomenclature.
+    comments:
+    - 'MIAPPE codename: genus'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:genus
+    owner: BiologicalMaterial
+    domain_of:
+    - BiologicalMaterial
+    range: string
+  species:
+    name: species
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/species
+    description: 'Species name (formally: specific epithet) for the organism under
+      study, according to standard scientific nomenclature.'
+    comments:
+    - 'MIAPPE codename: species'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:species
+    owner: BiologicalMaterial
+    domain_of:
+    - BiologicalMaterial
+    range: string
+  infraspecific_name:
+    name: infraspecific_name
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/infraspecific_name
+    description: Name of any subtaxa level, including variety, crossing name, etc.,
+      as a key-value pair list or MCPD-compliant format.
+    comments:
+    - 'MIAPPE codename: infraspecificName'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:infraspecific_name
+    owner: BiologicalMaterial
+    domain_of:
+    - BiologicalMaterial
+    range: string
+  biological_material_preprocessing:
+    name: biological_material_preprocessing
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/biological_material_preprocessing
+    description: Description of any process or treatment applied uniformly to the
+      biological material, prior to the study itself.
+    comments:
+    - 'MIAPPE codename: biologicalMaterialPreprocessing'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:biological_material_preprocessing
+    owner: BiologicalMaterial
+    domain_of:
+    - BiologicalMaterial
+    range: string
+    multivalued: true
+  material_source:
+    name: material_source
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/material_source
+    description: The source of the biological material (germplasm/accession).
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:material_source
+    owner: BiologicalMaterial
+    domain_of:
+    - BiologicalMaterial
+    range: MaterialSource
+    inlined: true
+    inlined_as_list: true
+  material_source_id:
+    name: material_source_id
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/material_source_id
+    description: An identifier for the source of the biological material, as a key-value
+      pair comprising the repository name/identifier plus the accession number.
+    comments:
+    - 'MIAPPE codename: materialSourceId'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:material_source_id
+    owner: MaterialSource
+    domain_of:
+    - MaterialSource
+    range: uriorcurie
+  material_source_doi:
+    name: material_source_doi
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/material_source_doi
+    description: Digital Object Identifier (DOI) of the material source.
+    comments:
+    - 'MIAPPE codename: materialSourceDoi'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:material_source_doi
+    owner: MaterialSource
+    domain_of:
+    - MaterialSource
+    range: uriorcurie
+  material_source_accession_number:
+    name: material_source_accession_number
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/material_source_accession_number
+    description: Unique identifier for accessions within a genebank. If material source
+      is not from a genebank, use a laboratory ID.
+    comments:
+    - 'MIAPPE codename: materialSourceAccNumber'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:material_source_accession_number
+    owner: MaterialSource
+    domain_of:
+    - MaterialSource
+    range: string
+  material_source_accession_name:
+    name: material_source_accession_name
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/material_source_accession_name
+    description: Genebank accession registered name or other designation given to
+      the material, or variety name.
+    comments:
+    - 'MIAPPE codename: materialSourceAccName'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:material_source_accession_name
+    owner: MaterialSource
+    domain_of:
+    - MaterialSource
+    range: string
+  material_source_institute_code:
+    name: material_source_institute_code
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/material_source_institute_code
+    description: FAO WIEWS code of the institute where the accession is maintained.
+    comments:
+    - 'MIAPPE codename: materialSourceInstCode'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:material_source_institute_code
+    owner: MaterialSource
+    domain_of:
+    - MaterialSource
+    range: string
+  material_source_institute_name:
+    name: material_source_institute_name
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/material_source_institute_name
+    description: Name of the material source institute.
+    comments:
+    - 'MIAPPE codename: materialSourceInstName'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:material_source_institute_name
+    owner: MaterialSource
+    domain_of:
+    - MaterialSource
+    range: string
+  material_source_other_ids:
+    name: material_source_other_ids
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/material_source_other_ids
+    description: Any other identifiers known to exist in other collections for this
+      material source, as key:value pairs separated by semicolons.
+    comments:
+    - 'MIAPPE codename: materialSourceOtherIds'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:material_source_other_ids
+    owner: MaterialSource
+    domain_of:
+    - MaterialSource
+    range: string
+  material_source_description:
+    name: material_source_description
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/material_source_description
+    description: Description of the material source.
+    comments:
+    - 'MIAPPE codename: materialSourceDesc'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:material_source_description
+    owner: MaterialSource
+    domain_of:
+    - MaterialSource
+    range: string
+  environment_parameter_name:
+    name: environment_parameter_name
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/environment_parameter_name
+    description: Name of the environment parameter constant within the experiment
+      (see MIAPPE Appendix I).
+    comments:
+    - 'MIAPPE codename: envParam'
+    examples:
+    - value: rooting medium composition
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:environment_parameter_name
+    owner: EnvironmentParameter
+    domain_of:
+    - EnvironmentParameter
+    range: string
+    required: true
+  environment_parameter_value:
+    name: environment_parameter_value
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/environment_parameter_value
+    description: Value of the environment parameter constant within the experiment.
+    comments:
+    - 'MIAPPE codename: envParamValue'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:environment_parameter_value
+    owner: EnvironmentParameter
+    domain_of:
+    - EnvironmentParameter
+    range: string
+    required: true
+  experimental_factor_type:
+    name: experimental_factor_type
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/experimental_factor_type
+    description: Name/acronym of the experimental factor (see MIAPPE Appendix II).
+    comments:
+    - 'MIAPPE codename: expeFactorType'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:experimental_factor_type
+    owner: ExperimentalFactor
+    domain_of:
+    - ExperimentalFactor
+    range: ExperimentalFactorTypeEnum
+    required: true
+  experimental_factor_description:
+    name: experimental_factor_description
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/experimental_factor_description
+    description: Free text description of the experimental factor, including all relevant
+      treatments planned for the plants targeted by a given factor.
+    comments:
+    - 'MIAPPE codename: expeFactorDesc'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:experimental_factor_description
+    owner: ExperimentalFactor
+    domain_of:
+    - ExperimentalFactor
+    range: string
+  experimental_factor_values:
+    name: experimental_factor_values
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/experimental_factor_values
+    description: List of possible values for the factor.
+    comments:
+    - 'MIAPPE codename: expeFactorValues'
+    examples:
+    - value: Watered
+    - value: Unwatered
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:experimental_factor_values
+    owner: ExperimentalFactor
+    domain_of:
+    - ExperimentalFactor
+    range: string
+    multivalued: true
+  event_type:
+    name: event_type
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/event_type
+    description: Short name of the event.
+    comments:
+    - 'MIAPPE codename: eventType'
+    examples:
+    - value: Planting
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:event_type
+    owner: Event
+    domain_of:
+    - Event
+    range: string
+    required: true
+  event_accession_number:
+    name: event_accession_number
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/event_accession_number
+    description: Accession number of the event type in a suitable controlled vocabulary
+      (Crop Ontology, subclass of CO_715:0000006).
+    comments:
+    - 'MIAPPE codename: eventAccNumber'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:event_accession_number
+    owner: Event
+    domain_of:
+    - Event
+    range: uriorcurie
+  event_description:
+    name: event_description
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/event_description
+    description: Description of the event, including details such as amount applied
+      and possibly duration of the event.
+    comments:
+    - 'MIAPPE codename: eventDesc'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:event_description
+    owner: Event
+    domain_of:
+    - Event
+    range: string
+  event_dates:
+    name: event_dates
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/event_dates
+    description: Date and time of the event.
+    comments:
+    - 'MIAPPE codename: eventDate'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:event_dates
+    owner: Event
+    domain_of:
+    - Event
+    range: date_or_datetime
+    required: true
+    multivalued: true
+  observation_unit_id:
+    name: observation_unit_id
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/observation_unit_id
+    description: Identifier used to identify the observation unit in data files containing
+      the values observed or measured on that unit. Must be locally unique.
+    comments:
+    - 'MIAPPE codename: obsUnitId'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:observation_unit_id
+    identifier: true
+    owner: ObservationUnit
+    domain_of:
+    - ObservationUnit
+    range: uriorcurie
+    required: true
+  observation_unit_type:
+    name: observation_unit_type
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/observation_unit_type
+    description: 'Type of observation unit, usually one of: study, block, sub-block,
+      plot, sub-plot, pot, plant.'
+    comments:
+    - 'MIAPPE codename: obsUnitType'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:observation_unit_type
+    owner: ObservationUnit
+    domain_of:
+    - ObservationUnit
+    range: ObservationUnitTypeEnum
+    required: true
+  observation_unit_external_ids:
+    name: observation_unit_external_ids
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/observation_unit_external_ids
+    description: Identifier for the observation unit in a persistent repository. URIs
+      are recommended when possible.
+    comments:
+    - 'MIAPPE codename: externalId'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:observation_unit_external_ids
+    owner: ObservationUnit
+    domain_of:
+    - ObservationUnit
+    range: uriorcurie
+    multivalued: true
+  spatial_distribution:
+    name: spatial_distribution
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/spatial_distribution
+    description: Type and value of a spatial coordinate (georeference or relative)
+      or level of observation, provided as a key-value pair of the form type:value.
+    comments:
+    - 'MIAPPE codename: spatialDistribution'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:spatial_distribution
+    owner: ObservationUnit
+    domain_of:
+    - ObservationUnit
+    range: string
+    multivalued: true
+  observation_unit_factor_values:
+    name: observation_unit_factor_values
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/observation_unit_factor_values
+    description: List of values for each factor applied to the observation unit.
+    comments:
+    - 'MIAPPE codename: obsUnitFactorValue'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:observation_unit_factor_values
+    owner: ObservationUnit
+    domain_of:
+    - ObservationUnit
+    range: string
+    multivalued: true
+  biological_material:
+    name: biological_material
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/biological_material
+    description: Reference(s) (by biological_material_id) to the biological material(s)
+      comprising this observation unit. The referenced materials are defined at the
+      study level. An observation unit may reference zero or more biological materials
+      (e.g. intercropping or mixed plots).
+    comments:
+    - 'MIAPPE checklist cardinality: Biological Material is 0+ per observation unit'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:biological_material
+    owner: ObservationUnit
+    domain_of:
+    - ObservationUnit
+    range: BiologicalMaterial
+    multivalued: true
+    inlined: false
+  sample_id:
+    name: sample_id
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/sample_id
+    description: Unique identifier for the sample.
+    comments:
+    - 'MIAPPE codename: sampleId'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:sample_id
+    identifier: true
+    owner: Sample
+    domain_of:
+    - Sample
+    range: uriorcurie
+    required: true
+  development_stage:
+    name: development_stage
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/development_stage
+    description: The stage in the life of a plant structure during which the sample
+      was taken (Plant Ontology, subclass of PO:0009012, or BBCH scale).
+    comments:
+    - 'MIAPPE codename: developmentStage'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:development_stage
+    owner: Sample
+    domain_of:
+    - Sample
+    range: uriorcurie
+  anatomical_entity:
+    name: anatomical_entity
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/anatomical_entity
+    description: A description of the plant part or plant product from which the sample
+      was taken (Plant Ontology, subclass of PO:0025131).
+    comments:
+    - 'MIAPPE codename: anatomicalEntity'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:anatomical_entity
+    owner: Sample
+    domain_of:
+    - Sample
+    range: uriorcurie
+    required: true
+  sample_description:
+    name: sample_description
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/sample_description
+    description: Any information not captured by the other sample fields, including
+      quantification, sample treatments and processing.
+    comments:
+    - 'MIAPPE codename: sampleDesc'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:sample_description
+    owner: Sample
+    domain_of:
+    - Sample
+    range: string
+  collection_date:
+    name: collection_date
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/collection_date
+    description: The date and time when the sample was collected / harvested.
+    comments:
+    - 'MIAPPE codename: collectionDate'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:collection_date
+    owner: Sample
+    domain_of:
+    - Sample
+    range: date_or_datetime
+    required: true
+  sample_external_ids:
+    name: sample_external_ids
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/sample_external_ids
+    description: An identifier for the sample in a persistent repository. URIs are
+      recommended when possible.
+    comments:
+    - 'MIAPPE codename: externalId'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:sample_external_ids
+    owner: Sample
+    domain_of:
+    - Sample
+    range: uriorcurie
+    multivalued: true
+  variable_id:
+    name: variable_id
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/variable_id
+    description: Code used to identify the variable in the data file. A variable ID
+      must be unique within a given investigation.
+    comments:
+    - 'MIAPPE codename: variableId'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:variable_id
+    identifier: true
+    owner: ObservedVariable
+    domain_of:
+    - ObservedVariable
+    range: uriorcurie
+    required: true
+  variable_name:
+    name: variable_name
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/variable_name
+    description: Name of the variable.
+    comments:
+    - 'MIAPPE codename: variableName'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:variable_name
+    owner: ObservedVariable
+    domain_of:
+    - ObservedVariable
+    range: string
+  variable_accession_number:
+    name: variable_accession_number
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/variable_accession_number
+    description: Accession number of the variable in the Crop Ontology.
+    comments:
+    - 'MIAPPE codename: variableAccNumber'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:variable_accession_number
+    owner: ObservedVariable
+    domain_of:
+    - ObservedVariable
+    range: uriorcurie
+  trait:
+    name: trait
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/trait
+    description: The trait component of the observed variable.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:trait
+    owner: ObservedVariable
+    domain_of:
+    - ObservedVariable
+    range: Trait
+    inlined: true
+    inlined_as_list: true
+  method:
+    name: method
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/method
+    description: The method component of the observed variable.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:method
+    owner: ObservedVariable
+    domain_of:
+    - ObservedVariable
+    range: Method
+    inlined: true
+    inlined_as_list: true
+  scale:
+    name: scale
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/scale
+    description: The scale component of the observed variable.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:scale
+    owner: ObservedVariable
+    domain_of:
+    - ObservedVariable
+    range: Scale
+    inlined: true
+    inlined_as_list: true
+  trait_name:
+    name: trait_name
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/trait_name
+    description: Name of the (plant or environmental) trait under observation.
+    comments:
+    - 'MIAPPE codename: traitName'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:trait_name
+    owner: Trait
+    domain_of:
+    - Trait
+    range: string
+    required: true
+  trait_entity:
+    name: trait_entity
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/trait_entity
+    description: Entity (part of the plant, whole plant, group of plants e.g. canopy)
+      on which the trait has been measured.
+    comments:
+    - 'MIAPPE codename: traitEntity'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:trait_entity
+    owner: Trait
+    domain_of:
+    - Trait
+    range: string
+  trait_entity_accession_number:
+    name: trait_entity_accession_number
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/trait_entity_accession_number
+    description: Accession number of the trait entity in a suitable controlled vocabulary
+      (Plant Ontology).
+    comments:
+    - 'MIAPPE codename: traitEntityAccessionNumber'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:trait_entity_accession_number
+    owner: Trait
+    domain_of:
+    - Trait
+    range: uriorcurie
+  trait_characteristic:
+    name: trait_characteristic
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/trait_characteristic
+    description: Characteristic measured (e.g. size, volume, surface, concentration).
+    comments:
+    - 'MIAPPE codename: traitCharacteristic'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:trait_characteristic
+    owner: Trait
+    domain_of:
+    - Trait
+    range: string
+  trait_characteristic_accession_number:
+    name: trait_characteristic_accession_number
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/trait_characteristic_accession_number
+    description: Accession number of the trait characteristic in a suitable controlled
+      vocabulary (PATO).
+    comments:
+    - 'MIAPPE codename: traitCharacteristicAccessionNumber'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:trait_characteristic_accession_number
+    owner: Trait
+    domain_of:
+    - Trait
+    range: uriorcurie
+  trait_accession_number:
+    name: trait_accession_number
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/trait_accession_number
+    description: Accession number of the trait in a suitable controlled vocabulary
+      (Crop Ontology, Trait Ontology).
+    comments:
+    - 'MIAPPE codename: traitAccNumber'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:trait_accession_number
+    owner: Trait
+    domain_of:
+    - Trait
+    range: uriorcurie
+  method_name:
+    name: method_name
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/method_name
+    description: Name of the method of observation.
+    comments:
+    - 'MIAPPE codename: methodName'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:method_name
+    owner: Method
+    domain_of:
+    - Method
+    range: string
+    required: true
+  method_accession_number:
+    name: method_accession_number
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/method_accession_number
+    description: Accession number of the method in a suitable controlled vocabulary
+      (Crop Ontology, Trait Ontology).
+    comments:
+    - 'MIAPPE codename: methodAccNumber'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:method_accession_number
+    owner: Method
+    domain_of:
+    - Method
+    range: uriorcurie
+  method_description:
+    name: method_description
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/method_description
+    description: Textual description of the method.
+    comments:
+    - 'MIAPPE codename: methodDesc'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:method_description
+    owner: Method
+    domain_of:
+    - Method
+    range: string
+  method_reference:
+    name: method_reference
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/method_reference
+    description: URI/DOI of reference describing the method.
+    comments:
+    - 'MIAPPE codename: methodRef'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:method_reference
+    owner: Method
+    domain_of:
+    - Method
+    range: uriorcurie
+  scale_name:
+    name: scale_name
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/scale_name
+    description: Name of the scale associated with the variable.
+    comments:
+    - 'MIAPPE codename: scaleName'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:scale_name
+    owner: Scale
+    domain_of:
+    - Scale
+    range: string
+    required: true
+  scale_accession_number:
+    name: scale_accession_number
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/scale_accession_number
+    description: Accession number of the scale in a suitable controlled vocabulary.
+    comments:
+    - 'MIAPPE codename: scaleAccNumber'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:scale_accession_number
+    owner: Scale
+    domain_of:
+    - Scale
+    range: uriorcurie
+  time_scale:
+    name: time_scale
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/time_scale
+    description: Name of the scale or unit of time with which observations of this
+      type were recorded in the data file (for time series studies).
+    comments:
+    - 'MIAPPE codename: timeScale'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:time_scale
+    owner: Scale
+    domain_of:
+    - Scale
+    range: string
+    multivalued: true
+  studies:
+    name: studies
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/studies
+    description: The studies belonging to this investigation.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:studies
+    owner: Investigation
+    domain_of:
+    - Investigation
+    range: Study
+    required: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  persons:
+    name: persons
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/persons
+    description: The people involved in this investigation or study.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:persons
+    owner: Study
+    domain_of:
+    - Investigation
+    - Study
+    range: Person
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  data_files:
+    name: data_files
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/data_files
+    description: The data files associated with this study.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:data_files
+    owner: Study
+    domain_of:
+    - Study
+    range: DataFile
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  biological_materials:
+    name: biological_materials
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/biological_materials
+    description: The biological materials studied in this study.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:biological_materials
+    owner: Study
+    domain_of:
+    - Study
+    range: BiologicalMaterial
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  environment_parameters:
+    name: environment_parameters
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/environment_parameters
+    description: The constant environment parameters of this study.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:environment_parameters
+    owner: Study
+    domain_of:
+    - Study
+    range: EnvironmentParameter
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  experimental_factors:
+    name: experimental_factors
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/experimental_factors
+    description: The experimental factors varied in this study.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:experimental_factors
+    owner: Study
+    domain_of:
+    - Study
+    range: ExperimentalFactor
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  events:
+    name: events
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/events
+    description: The events occurring during this study or observation unit.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:events
+    owner: Study
+    domain_of:
+    - Study
+    range: Event
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  observation_units:
+    name: observation_units
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/observation_units
+    description: The observation units of this study.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:observation_units
+    owner: Study
+    domain_of:
+    - Study
+    range: ObservationUnit
+    required: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  observed_variables:
+    name: observed_variables
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/observed_variables
+    description: The observed variables measured in this study.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:observed_variables
+    owner: Study
+    domain_of:
+    - Study
+    range: ObservedVariable
+    required: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  samples:
+    name: samples
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/samples
+    description: The samples taken from this observation unit.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:samples
+    owner: ObservationUnit
+    domain_of:
+    - ObservationUnit
+    range: Sample
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  latitude:
+    name: latitude
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/latitude
+    description: Latitude in degrees, in decimal format (ISO 6709).
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:latitude
+    owner: GeoReferenced
+    domain_of:
+    - GeoReferenced
+    range: float
+  longitude:
+    name: longitude
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/longitude
+    description: Longitude in degrees, in decimal format (ISO 6709).
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:longitude
+    owner: GeoReferenced
+    domain_of:
+    - GeoReferenced
+    range: float
+  altitude:
+    name: altitude
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/altitude
+    description: Altitude provided in metres (m).
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:altitude
+    owner: GeoReferenced
+    domain_of:
+    - GeoReferenced
+    range: string
+  coordinates_uncertainty:
+    name: coordinates_uncertainty
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/coordinates_uncertainty
+    description: Circular uncertainty of the coordinates, preferably in metres (m).
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slot_uri: miappe_linkml:coordinates_uncertainty
+    owner: GeoReferenced
+    domain_of:
+    - GeoReferenced
+    range: string
+classes:
+  Investigation:
+    name: Investigation
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/Investigation
+    description: Investigations are research programmes with defined aims. They can
+      exist at various scales (for example, they could encompass a grant-funded programme
+      of work, the various components comprising a peer-reviewed publication, or a
+      single experiment). One investigation is expected per MIAPPE submission.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slots:
+    - investigation_id
+    - investigation_title
+    - investigation_description
+    - submission_date
+    - public_release_date
+    - license
+    - miappe_version
+    - associated_publications
+    - persons
+    - studies
+    class_uri: miappe_linkml:Investigation
+    tree_root: true
+  Study:
+    name: Study
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/Study
+    description: A study (or experiment) comprises a series of assays (or measurements)
+      of one or more types, undertaken to answer a particular biological question.
+      At least one study is expected per investigation.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slots:
+    - study_id
+    - study_title
+    - study_description
+    - study_start_date
+    - study_end_date
+    - contact_institution
+    - location_country
+    - site_name
+    - location_latitude
+    - location_longitude
+    - location_altitude
+    - experimental_design_description
+    - experimental_design_type
+    - observation_unit_level_hierarchy
+    - observation_unit_description
+    - growth_facility_description
+    - growth_facility_type
+    - cultural_practices
+    - experimental_design_map
+    - persons
+    - data_files
+    - biological_materials
+    - environment_parameters
+    - experimental_factors
+    - events
+    - observation_units
+    - observed_variables
+    class_uri: miappe_linkml:Study
+  Person:
+    name: Person
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/Person
+    description: A human involved in the investigation or specifically any of its
+      studies. At least one person is expected per investigation.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slots:
+    - person_name
+    - person_email
+    - person_id
+    - person_roles
+    - person_affiliations
+    class_uri: miappe_linkml:Person
+  Publication:
+    name: Publication
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/Publication
+    description: A literature publication where the investigation is described. Use
+      of DOIs is recommended.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slots:
+    - associated_publication
+    class_uri: miappe_linkml:Publication
+  DataFile:
+    name: DataFile
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/DataFile
+    description: A file or digital object holding observation data recorded during
+      one or more assays of the study, typically in tabular form.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slots:
+    - data_file_link
+    - data_file_description
+    - data_file_version
+    class_uri: miappe_linkml:DataFile
+  BiologicalMaterial:
+    name: BiologicalMaterial
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/BiologicalMaterial
+    description: The biological material being studied (e.g. plants grown from a certain
+      bag or seed, or plants grown in a particular field). The original source of
+      that material is called the material source.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    mixins:
+    - GeoReferenced
+    slots:
+    - biological_material_id
+    - biological_material_external_ids
+    - organism
+    - genus
+    - species
+    - infraspecific_name
+    - biological_material_preprocessing
+    - material_source
+    - latitude
+    - longitude
+    - altitude
+    - coordinates_uncertainty
+    class_uri: miappe_linkml:BiologicalMaterial
+  MaterialSource:
+    name: MaterialSource
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/MaterialSource
+    description: An identifier for the source of the biological material (commonly
+      called germplasm, accession, genotype or variety), together with any repository
+      accession information and provenance.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    mixins:
+    - GeoReferenced
+    slots:
+    - material_source_id
+    - material_source_doi
+    - material_source_accession_number
+    - material_source_accession_name
+    - material_source_institute_code
+    - material_source_institute_name
+    - material_source_other_ids
+    - material_source_description
+    - latitude
+    - longitude
+    - altitude
+    - coordinates_uncertainty
+    class_uri: miappe_linkml:MaterialSource
+  EnvironmentParameter:
+    name: EnvironmentParameter
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/EnvironmentParameter
+    description: An environmental parameter that was kept constant throughout the
+      study and did not change between observation units or assays.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slots:
+    - environment_parameter_name
+    - environment_parameter_value
+    class_uri: miappe_linkml:EnvironmentParameter
+  ExperimentalFactor:
+    name: ExperimentalFactor
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/ExperimentalFactor
+    description: A condition that varies between observation units, which may be biotic
+      (pest, disease interaction) or abiotic (treatment and cultural practice) in
+      nature. The object of a study is to ascertain the impact of one or more factors
+      on the biological material.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slots:
+    - experimental_factor_type
+    - experimental_factor_description
+    - experimental_factor_values
+    class_uri: miappe_linkml:ExperimentalFactor
+  Event:
+    name: Event
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/Event
+    description: An event is a discrete occurrence at a particular time in the experiment
+      (which can be natural, such as rain, or unnatural, such as planting, watering,
+      etc).
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slots:
+    - event_type
+    - event_accession_number
+    - event_description
+    - event_dates
+    class_uri: miappe_linkml:Event
+  ObservationUnit:
+    name: ObservationUnit
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/ObservationUnit
+    description: 'Observation units are objects that are subject to instances of observation
+      and measurement. An observation unit comprises one or more plants, and/or their
+      environment. (Synonym: Experimental unit)'
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slots:
+    - observation_unit_id
+    - observation_unit_type
+    - observation_unit_external_ids
+    - spatial_distribution
+    - observation_unit_factor_values
+    - biological_material
+    - samples
+    class_uri: miappe_linkml:ObservationUnit
+  Sample:
+    name: Sample
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/Sample
+    description: A sample is a portion of plant tissue harvested, non-harvested or
+      extracted from an observation unit for the purpose of sub-plant observations
+      and/or molecular studies.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slots:
+    - sample_id
+    - development_stage
+    - anatomical_entity
+    - sample_description
+    - collection_date
+    - sample_external_ids
+    class_uri: miappe_linkml:Sample
+  ObservedVariable:
+    name: ObservedVariable
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/ObservedVariable
+    description: An observed variable describes how a measurement has been made. It
+      typically takes the form of a measured characteristic of the observation unit
+      (plant or environmental trait), associated to the method and unit of measurement.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slots:
+    - variable_id
+    - variable_name
+    - variable_accession_number
+    - trait
+    - method
+    - scale
+    class_uri: miappe_linkml:ObservedVariable
+  Trait:
+    name: Trait
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/Trait
+    description: The (plant or environmental) trait under observation, optionally
+      described by the entity it is measured on and its characteristic.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slots:
+    - trait_name
+    - trait_entity
+    - trait_entity_accession_number
+    - trait_characteristic
+    - trait_characteristic_accession_number
+    - trait_accession_number
+    class_uri: miappe_linkml:Trait
+  Method:
+    name: Method
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/Method
+    description: The method of observation used to record an observed variable.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slots:
+    - method_name
+    - method_accession_number
+    - method_description
+    - method_reference
+    class_uri: miappe_linkml:Method
+  Scale:
+    name: Scale
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/Scale
+    description: The scale (unit of measurement) associated with an observed variable.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    slots:
+    - scale_name
+    - scale_accession_number
+    - time_scale
+    class_uri: miappe_linkml:Scale
+  GeoReferenced:
+    name: GeoReferenced
+    definition_uri: https://w3id.org/sierra-moxon/miappe-linkml/GeoReferenced
+    description: A mixin providing decimal geographic coordinates (latitude, longitude,
+      altitude) plus a circular coordinate uncertainty, as used for in situ biological
+      material and material sources in MIAPPE.
+    from_schema: https://w3id.org/sierra-moxon/miappe-linkml
+    mixin: true
+    slots:
+    - latitude
+    - longitude
+    - altitude
+    - coordinates_uncertainty
+    class_uri: miappe_linkml:GeoReferenced
+metamodel_version: 1.11.0
+source_file: miappe_linkml.yaml
+source_file_date: '2026-07-14T23:34:26'
+source_file_size: 37721
+generation_date: '2026-07-14T23:34:37'
+
