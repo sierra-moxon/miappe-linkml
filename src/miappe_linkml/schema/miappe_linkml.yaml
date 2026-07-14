@@ -1,98 +1,1116 @@
 ---
 id: https://w3id.org/sierra-moxon/miappe-linkml
 name: miappe-linkml
-title: miappe-linkml
-description: |-
-  This is the project description.
+title: MIAPPE LinkML
+description: >-
+  A LinkML representation of the MIAPPE (Minimum Information About a Plant
+  Phenotyping Experiment) v1.1 checklist and data model. The structure follows
+  the MIAPPE entity relationship diagram (Investigation > Study > Observation
+  Unit > Sample) together with the supporting entities (Person, Publication,
+  Biological Material, Environment Parameter, Experimental Factor, Event, Data
+  File and Observed Variable). Each slot records its MIAPPE "codename" in a
+  comment, and enumerations are derived from the MIAPPE checklist and its
+  appendices.
 license: Apache-2.0
 see_also:
-  - https://sierra-moxon.github.io/miappe-linkml
+  - https://github.com/MIAPPE/MIAPPE
+  - https://www.miappe.org/
 
 prefixes:
   miappe_linkml: https://w3id.org/sierra-moxon/miappe-linkml/
   linkml: https://w3id.org/linkml/
-  biolink: https://w3id.org/biolink/vocab/
   schema: http://schema.org/
   PATO: http://purl.obolibrary.org/obo/PATO_
-  example: http://www.example.org/rdf#
+  PO: http://purl.obolibrary.org/obo/PO_
+  TO: http://purl.obolibrary.org/obo/TO_
+  NCBITaxon: http://purl.obolibrary.org/obo/NCBITaxon_
+  EO: http://purl.obolibrary.org/obo/EO_
+  CO_715: http://www.cropontology.org/rdf/CO_715_
+  CO_322: http://www.cropontology.org/rdf/CO_322_
+  XEO: http://purl.obolibrary.org/obo/XEO_
+  dcterms: http://purl.org/dc/terms/
+  xsd: http://www.w3.org/2001/XMLSchema#
 default_prefix: miappe_linkml
 default_range: string
 
 imports:
   - linkml:types
 
+# ---------------------------------------------------------------------------
+# Classes
+# ---------------------------------------------------------------------------
 classes:
 
-  NamedThing:
-    description: >-
-      A generic grouping for any identifiable entity
-    slots:
-      - id
-      - name
-      - description
-    class_uri: schema:Thing
-
-  Person:
-    is_a: NamedThing
-    description: >-
-      Represents a Person
-    slots:
-      - primary_email
-      - birth_date
-      - age_in_years
-      - vital_status
-    slot_usage:
-      primary_email:
-        pattern: "^\\S+@[\\S+\\.]+\\S+"
-
-  PersonCollection:
+  Investigation:
     tree_root: true
     description: >-
-      A holder for Person objects
-    attributes:
-      people:
-        range: Person
-        multivalued: true
-        inlined_as_list: true
+      Investigations are research programmes with defined aims. They can exist
+      at various scales (for example, they could encompass a grant-funded
+      programme of work, the various components comprising a peer-reviewed
+      publication, or a single experiment). One investigation is expected per
+      MIAPPE submission.
+    slots:
+      - investigation_id
+      - investigation_title
+      - investigation_description
+      - submission_date
+      - public_release_date
+      - license
+      - miappe_version
+      - associated_publications
+      - persons
+      - studies
 
+  Study:
+    description: >-
+      A study (or experiment) comprises a series of assays (or measurements) of
+      one or more types, undertaken to answer a particular biological question.
+      At least one study is expected per investigation.
+    slots:
+      - study_id
+      - study_title
+      - study_description
+      - study_start_date
+      - study_end_date
+      - contact_institution
+      - location_country
+      - site_name
+      - location_latitude
+      - location_longitude
+      - location_altitude
+      - experimental_design_description
+      - experimental_design_type
+      - observation_unit_level_hierarchy
+      - observation_unit_description
+      - growth_facility_description
+      - growth_facility_type
+      - cultural_practices
+      - experimental_design_map
+      - persons
+      - data_files
+      - biological_materials
+      - environment_parameters
+      - experimental_factors
+      - events
+      - observation_units
+      - observed_variables
+
+  Person:
+    description: >-
+      A human involved in the investigation or specifically any of its studies.
+      At least one person is expected per investigation.
+    slots:
+      - person_name
+      - person_email
+      - person_id
+      - person_roles
+      - person_affiliations
+
+  Publication:
+    description: >-
+      A literature publication where the investigation is described. Use of DOIs
+      is recommended.
+    slots:
+      - associated_publication
+
+  DataFile:
+    description: >-
+      A file or digital object holding observation data recorded during one or
+      more assays of the study, typically in tabular form.
+    slots:
+      - data_file_link
+      - data_file_description
+      - data_file_version
+
+  BiologicalMaterial:
+    description: >-
+      The biological material being studied (e.g. plants grown from a certain
+      bag or seed, or plants grown in a particular field). The original source
+      of that material is called the material source.
+    mixins:
+      - GeoReferenced
+    slots:
+      - biological_material_id
+      - biological_material_external_ids
+      - organism
+      - genus
+      - species
+      - infraspecific_name
+      - biological_material_preprocessing
+      - material_source
+
+  MaterialSource:
+    description: >-
+      An identifier for the source of the biological material (commonly called
+      germplasm, accession, genotype or variety), together with any repository
+      accession information and provenance.
+    mixins:
+      - GeoReferenced
+    slots:
+      - material_source_id
+      - material_source_doi
+      - material_source_accession_number
+      - material_source_accession_name
+      - material_source_institute_code
+      - material_source_institute_name
+      - material_source_other_ids
+      - material_source_description
+
+  EnvironmentParameter:
+    description: >-
+      An environmental parameter that was kept constant throughout the study and
+      did not change between observation units or assays.
+    slots:
+      - environment_parameter_name
+      - environment_parameter_value
+
+  ExperimentalFactor:
+    description: >-
+      A condition that varies between observation units, which may be biotic
+      (pest, disease interaction) or abiotic (treatment and cultural practice)
+      in nature. The object of a study is to ascertain the impact of one or more
+      factors on the biological material.
+    slots:
+      - experimental_factor_type
+      - experimental_factor_description
+      - experimental_factor_values
+
+  Event:
+    description: >-
+      An event is a discrete occurrence at a particular time in the experiment
+      (which can be natural, such as rain, or unnatural, such as planting,
+      watering, etc).
+    slots:
+      - event_type
+      - event_accession_number
+      - event_description
+      - event_dates
+
+  ObservationUnit:
+    description: >-
+      Observation units are objects that are subject to instances of observation
+      and measurement. An observation unit comprises one or more plants, and/or
+      their environment. (Synonym: Experimental unit)
+    slots:
+      - observation_unit_id
+      - observation_unit_type
+      - observation_unit_external_ids
+      - spatial_distribution
+      - observation_unit_factor_values
+      - biological_material
+      - samples
+
+  Sample:
+    description: >-
+      A sample is a portion of plant tissue harvested, non-harvested or
+      extracted from an observation unit for the purpose of sub-plant
+      observations and/or molecular studies.
+    slots:
+      - sample_id
+      - development_stage
+      - anatomical_entity
+      - sample_description
+      - collection_date
+      - sample_external_ids
+
+  ObservedVariable:
+    description: >-
+      An observed variable describes how a measurement has been made. It
+      typically takes the form of a measured characteristic of the observation
+      unit (plant or environmental trait), associated to the method and unit of
+      measurement.
+    slots:
+      - variable_id
+      - variable_name
+      - variable_accession_number
+      - trait
+      - method
+      - scale
+
+  Trait:
+    description: >-
+      The (plant or environmental) trait under observation, optionally described
+      by the entity it is measured on and its characteristic.
+    slots:
+      - trait_name
+      - trait_entity
+      - trait_entity_accession_number
+      - trait_characteristic
+      - trait_characteristic_accession_number
+      - trait_accession_number
+
+  Method:
+    description: >-
+      The method of observation used to record an observed variable.
+    slots:
+      - method_name
+      - method_accession_number
+      - method_description
+      - method_reference
+
+  Scale:
+    description: >-
+      The scale (unit of measurement) associated with an observed variable.
+    slots:
+      - scale_name
+      - scale_accession_number
+      - time_scale
+
+# ---------------------------------------------------------------------------
+# Mixins
+# ---------------------------------------------------------------------------
+  GeoReferenced:
+    mixin: true
+    description: >-
+      A mixin providing decimal geographic coordinates (latitude, longitude,
+      altitude) plus a circular coordinate uncertainty, as used for in situ
+      biological material and material sources in MIAPPE.
+    slots:
+      - latitude
+      - longitude
+      - altitude
+      - coordinates_uncertainty
+
+# ---------------------------------------------------------------------------
+# Slots
+# ---------------------------------------------------------------------------
 slots:
-  id:
-    identifier: true
-    slot_uri: schema:identifier
-    range: uriorcurie
-    description: A unique identifier for a thing
-  name:
-    slot_uri: schema:name
-    description: A human-readable name for a thing
-  description:
-    slot_uri: schema:description
-    description: A human-readable description for a thing
-  primary_email:
-    slot_uri: schema:email
-    description: The main email address of a person
-  birth_date:
-    slot_uri: schema:birthDate
-    range: date
-    description: Date on which a person is born
-  age_in_years:
-    range: integer
-    description: Number of years since birth
-  vital_status:
-    range: PersonStatus
-    description: living or dead status
 
+  # -- Investigation -------------------------------------------------------
+  investigation_id:
+    identifier: true
+    range: uriorcurie
+    slot_uri: schema:identifier
+    description: >-
+      Identifier comprising the unique name of the institution/database hosting
+      the submission of the investigation data, and the accession number of the
+      investigation in that institution.
+    comments:
+      - "MIAPPE codename: investigationId"
+    examples:
+      - value: EBI:12345678
+  investigation_title:
+    required: true
+    slot_uri: dcterms:title
+    description: Human-readable string summarising the investigation.
+    comments:
+      - "MIAPPE codename: investigationTitle"
+  investigation_description:
+    slot_uri: dcterms:description
+    description: Human-readable text describing the investigation in more detail.
+    comments:
+      - "MIAPPE codename: investigationDescription"
+  submission_date:
+    range: date_or_datetime
+    description: >-
+      Date of submission of the dataset presently being described to a host
+      repository (ISO 8601, optional time zone).
+    comments:
+      - "MIAPPE codename: submissionDate"
+  public_release_date:
+    range: date_or_datetime
+    description: >-
+      Date of first public release of the dataset presently being described
+      (ISO 8601, optional time zone).
+    comments:
+      - "MIAPPE codename: publicReleaseDate"
+  license:
+    range: LicenseEnum
+    description: >-
+      License for the reuse of the data associated with this investigation. The
+      Creative Commons licenses cover most use cases and are recommended.
+    comments:
+      - "MIAPPE codename: license"
+  miappe_version:
+    required: true
+    description: The version of MIAPPE used.
+    comments:
+      - "MIAPPE codename: miappeVersion"
+    examples:
+      - value: "1.1"
+  associated_publications:
+    range: Publication
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Publications where the investigation is described. Use of DOIs is
+      recommended.
+    comments:
+      - "MIAPPE codename: associatedPublication"
+
+  associated_publication:
+    range: uriorcurie
+    description: >-
+      An identifier for a literature publication where the investigation is
+      described. Use of DOIs is recommended.
+    comments:
+      - "MIAPPE codename: associatedPublication"
+    examples:
+      - value: doi:10.1371/journal.pone.0071377
+
+  # -- Study ---------------------------------------------------------------
+  study_id:
+    identifier: true
+    range: uriorcurie
+    slot_uri: schema:identifier
+    description: >-
+      Unique identifier comprising the name or identifier for the
+      institution/database hosting the submission of the study data, and the
+      identifier of the study in that institution.
+    comments:
+      - "MIAPPE codename: studyId"
+  study_title:
+    required: true
+    slot_uri: dcterms:title
+    description: Name, human-readable text summarising the study.
+    comments:
+      - "MIAPPE codename: studyTitle"
+  study_description:
+    slot_uri: dcterms:description
+    description: Human-readable text describing the study.
+    comments:
+      - "MIAPPE codename: studyDescription"
+  study_start_date:
+    required: true
+    range: date_or_datetime
+    description: Date and, if relevant, time when the experiment started.
+    comments:
+      - "MIAPPE codename: studyStartDate"
+  study_end_date:
+    range: date_or_datetime
+    description: Date and, if relevant, time when the experiment ended.
+    comments:
+      - "MIAPPE codename: studyEndDate"
+  contact_institution:
+    required: true
+    description: >-
+      Name and address of the institution responsible for the study.
+    comments:
+      - "MIAPPE codename: contactInst"
+  location_country:
+    required: true
+    description: >-
+      The country where the experiment took place, either as a full name or
+      preferably as a 2-letter code (ISO 3166).
+    comments:
+      - "MIAPPE codename: locationCountry"
+    examples:
+      - value: FR
+  site_name:
+    required: true
+    description: >-
+      The name of the natural site, experimental field, greenhouse, phenotyping
+      facility, etc. where the experiment took place.
+    comments:
+      - "MIAPPE codename: siteName"
+  location_latitude:
+    range: float
+    description: >-
+      Latitude of the experimental site in degrees, in decimal format (ISO 6709).
+    comments:
+      - "MIAPPE codename: locationLatitude"
+  location_longitude:
+    range: float
+    description: >-
+      Longitude of the experimental site in degrees, in decimal format
+      (ISO 6709).
+    comments:
+      - "MIAPPE codename: locationLongitude"
+  location_altitude:
+    description: Altitude of the experimental site, provided in metres (m).
+    comments:
+      - "MIAPPE codename: locationAltitude"
+  experimental_design_description:
+    required: true
+    description: >-
+      Short description of the experimental design, possibly including
+      statistical design.
+    comments:
+      - "MIAPPE codename: expeDesignDesc"
+  experimental_design_type:
+    range: uriorcurie
+    description: >-
+      Type of experimental design of the study, in the form of an accession
+      number from the Crop Ontology (subclass of CO_715:0000003).
+    comments:
+      - "MIAPPE codename: expeDesignType"
+    examples:
+      - value: CO_715:0000145
+  observation_unit_level_hierarchy:
+    description: >-
+      Hierarchy of the different levels of repetitions between each other.
+    comments:
+      - "MIAPPE codename: obsUnitLevelHierarchy"
+    examples:
+      - value: block>rep>plot
+  observation_unit_description:
+    required: true
+    description: General description of the observation units in the study.
+    comments:
+      - "MIAPPE codename: obsUnitDesc"
+  growth_facility_description:
+    required: true
+    description: Short description of the facility in which the study was carried out.
+    comments:
+      - "MIAPPE codename: growthFacilityDesc"
+  growth_facility_type:
+    range: uriorcurie
+    description: >-
+      Type of growth facility in which the study was carried out, in the form of
+      an accession number from the Crop Ontology (subclass of CO_715:0000005).
+    comments:
+      - "MIAPPE codename: growthFacilityType"
+    examples:
+      - value: CO_715:0000162
+  cultural_practices:
+    description: General description of the cultural practices of the study.
+    comments:
+      - "MIAPPE codename: culturalPractice"
+  experimental_design_map:
+    range: uri
+    multivalued: true
+    description: Representation of the experimental design (URL or file name).
+    comments:
+      - "MIAPPE codename: expeDesignMap"
+
+  # -- Person --------------------------------------------------------------
+  person_id:
+    range: uriorcurie
+    description: >-
+      An identifier for the data submitter. If that submitter is an individual,
+      ORCID identifiers are recommended.
+    comments:
+      - "MIAPPE codename: personId"
+    examples:
+      - value: orcid.org/0000-0001-6494-0008
+  person_name:
+    required: true
+    slot_uri: schema:name
+    description: >-
+      The name of the person (either full name or as used in scientific
+      publications).
+    comments:
+      - "MIAPPE codename: personName"
+  person_email:
+    slot_uri: schema:email
+    pattern: "^\\S+@[\\S+\\.]+\\S+"
+    description: The electronic mail address of the person.
+    comments:
+      - "MIAPPE codename: personEmail"
+  person_roles:
+    multivalued: true
+    required: true
+    description: Type of contribution of the person to the investigation.
+    comments:
+      - "MIAPPE codename: personRole"
+    examples:
+      - value: corresponding author
+  person_affiliations:
+    multivalued: true
+    required: true
+    description: The institution the person belongs to.
+    comments:
+      - "MIAPPE codename: personAffiliation"
+
+  # -- Data file -----------------------------------------------------------
+  data_file_link:
+    required: true
+    range: uri
+    description: >-
+      Link to the data file (or digital object) in a public database or in a
+      persistent institutional repository; or identifier of the data file when
+      submitted together with the MIAPPE submission.
+    comments:
+      - "MIAPPE codename: dataFileLink"
+  data_file_description:
+    required: true
+    description: >-
+      Description of the format of the data file. May be a standard file format
+      name, or a description of the organization of the data in a tabular file.
+    comments:
+      - "MIAPPE codename: dataFileDesc"
+  data_file_version:
+    description: The version of the dataset (the actual data).
+    comments:
+      - "MIAPPE codename: dataFileVersion"
+
+  # -- Biological material -------------------------------------------------
+  biological_material_id:
+    identifier: true
+    range: uriorcurie
+    description: >-
+      Code used to identify the biological material in the data file. Should be
+      unique within the Investigation.
+    comments:
+      - "MIAPPE codename: biologicalMaterialId"
+    examples:
+      - value: INRA:W95115_inra_2001
+  biological_material_external_ids:
+    multivalued: true
+    range: uriorcurie
+    description: >-
+      One to many identifiers for the biological material. Can include EBI
+      Biosamples ID. URIs are recommended when possible.
+    comments:
+      - "MIAPPE codename: biologicalMaterialExtId"
+  organism:
+    required: true
+    range: uriorcurie
+    description: >-
+      An identifier for the organism at the species level. Use of the NCBI taxon
+      ID is recommended.
+    comments:
+      - "MIAPPE codename: organism"
+    examples:
+      - value: NCBITaxon:4577
+  genus:
+    description: >-
+      Genus name for the organism under study, according to standard scientific
+      nomenclature.
+    comments:
+      - "MIAPPE codename: genus"
+  species:
+    description: >-
+      Species name (formally: specific epithet) for the organism under study,
+      according to standard scientific nomenclature.
+    comments:
+      - "MIAPPE codename: species"
+  infraspecific_name:
+    description: >-
+      Name of any subtaxa level, including variety, crossing name, etc.,
+      as a key-value pair list or MCPD-compliant format.
+    comments:
+      - "MIAPPE codename: infraspecificName"
+  biological_material_preprocessing:
+    multivalued: true
+    description: >-
+      Description of any process or treatment applied uniformly to the
+      biological material, prior to the study itself.
+    comments:
+      - "MIAPPE codename: biologicalMaterialPreprocessing"
+  material_source:
+    range: MaterialSource
+    inlined: true
+    description: The source of the biological material (germplasm/accession).
+
+  # -- Material source -----------------------------------------------------
+  material_source_id:
+    range: uriorcurie
+    description: >-
+      An identifier for the source of the biological material, as a key-value
+      pair comprising the repository name/identifier plus the accession number.
+    comments:
+      - "MIAPPE codename: materialSourceId"
+  material_source_doi:
+    range: uriorcurie
+    description: Digital Object Identifier (DOI) of the material source.
+    comments:
+      - "MIAPPE codename: materialSourceDoi"
+  material_source_accession_number:
+    description: >-
+      Unique identifier for accessions within a genebank. If material source is
+      not from a genebank, use a laboratory ID.
+    comments:
+      - "MIAPPE codename: materialSourceAccNumber"
+  material_source_accession_name:
+    description: >-
+      Genebank accession registered name or other designation given to the
+      material, or variety name.
+    comments:
+      - "MIAPPE codename: materialSourceAccName"
+  material_source_institute_code:
+    description: >-
+      FAO WIEWS code of the institute where the accession is maintained.
+    comments:
+      - "MIAPPE codename: materialSourceInstCode"
+  material_source_institute_name:
+    description: Name of the material source institute.
+    comments:
+      - "MIAPPE codename: materialSourceInstName"
+  material_source_other_ids:
+    description: >-
+      Any other identifiers known to exist in other collections for this
+      material source, as key:value pairs separated by semicolons.
+    comments:
+      - "MIAPPE codename: materialSourceOtherIds"
+  material_source_description:
+    description: Description of the material source.
+    comments:
+      - "MIAPPE codename: materialSourceDesc"
+
+  # -- Environment parameter ----------------------------------------------
+  environment_parameter_name:
+    required: true
+    description: >-
+      Name of the environment parameter constant within the experiment (see
+      MIAPPE Appendix I).
+    comments:
+      - "MIAPPE codename: envParam"
+    examples:
+      - value: rooting medium composition
+  environment_parameter_value:
+    required: true
+    description: >-
+      Value of the environment parameter constant within the experiment.
+    comments:
+      - "MIAPPE codename: envParamValue"
+
+  # -- Experimental factor -------------------------------------------------
+  experimental_factor_type:
+    required: true
+    range: ExperimentalFactorTypeEnum
+    description: Name/acronym of the experimental factor (see MIAPPE Appendix II).
+    comments:
+      - "MIAPPE codename: expeFactorType"
+  experimental_factor_description:
+    description: >-
+      Free text description of the experimental factor, including all relevant
+      treatments planned for the plants targeted by a given factor.
+    comments:
+      - "MIAPPE codename: expeFactorDesc"
+  experimental_factor_values:
+    multivalued: true
+    description: List of possible values for the factor.
+    comments:
+      - "MIAPPE codename: expeFactorValues"
+    examples:
+      - value: Watered
+      - value: Unwatered
+
+  # -- Event ---------------------------------------------------------------
+  event_type:
+    required: true
+    description: Short name of the event.
+    comments:
+      - "MIAPPE codename: eventType"
+    examples:
+      - value: Planting
+  event_accession_number:
+    range: uriorcurie
+    description: >-
+      Accession number of the event type in a suitable controlled vocabulary
+      (Crop Ontology, subclass of CO_715:0000006).
+    comments:
+      - "MIAPPE codename: eventAccNumber"
+  event_description:
+    description: >-
+      Description of the event, including details such as amount applied and
+      possibly duration of the event.
+    comments:
+      - "MIAPPE codename: eventDesc"
+  event_dates:
+    multivalued: true
+    required: true
+    range: date_or_datetime
+    description: Date and time of the event.
+    comments:
+      - "MIAPPE codename: eventDate"
+
+  # -- Observation unit ----------------------------------------------------
+  observation_unit_id:
+    identifier: true
+    range: uriorcurie
+    description: >-
+      Identifier used to identify the observation unit in data files containing
+      the values observed or measured on that unit. Must be locally unique.
+    comments:
+      - "MIAPPE codename: obsUnitId"
+  observation_unit_type:
+    required: true
+    range: ObservationUnitTypeEnum
+    description: >-
+      Type of observation unit, usually one of: study, block, sub-block, plot,
+      sub-plot, pot, plant.
+    comments:
+      - "MIAPPE codename: obsUnitType"
+  observation_unit_external_ids:
+    multivalued: true
+    range: uriorcurie
+    description: >-
+      Identifier for the observation unit in a persistent repository. URIs are
+      recommended when possible.
+    comments:
+      - "MIAPPE codename: externalId"
+  spatial_distribution:
+    multivalued: true
+    description: >-
+      Type and value of a spatial coordinate (georeference or relative) or level
+      of observation, provided as a key-value pair of the form type:value.
+    comments:
+      - "MIAPPE codename: spatialDistribution"
+  observation_unit_factor_values:
+    multivalued: true
+    description: List of values for each factor applied to the observation unit.
+    comments:
+      - "MIAPPE codename: obsUnitFactorValue"
+  biological_material:
+    range: BiologicalMaterial
+    multivalued: true
+    inlined: false
+    description: >-
+      Reference(s) (by biological_material_id) to the biological material(s)
+      comprising this observation unit. The referenced materials are defined at
+      the study level. An observation unit may reference zero or more biological
+      materials (e.g. intercropping or mixed plots).
+    comments:
+      - "MIAPPE checklist cardinality: Biological Material is 0+ per observation unit"
+
+  # -- Sample --------------------------------------------------------------
+  sample_id:
+    identifier: true
+    range: uriorcurie
+    description: Unique identifier for the sample.
+    comments:
+      - "MIAPPE codename: sampleId"
+  development_stage:
+    range: uriorcurie
+    description: >-
+      The stage in the life of a plant structure during which the sample was
+      taken (Plant Ontology, subclass of PO:0009012, or BBCH scale).
+    comments:
+      - "MIAPPE codename: developmentStage"
+  anatomical_entity:
+    required: true
+    range: uriorcurie
+    description: >-
+      A description of the plant part or plant product from which the sample was
+      taken (Plant Ontology, subclass of PO:0025131).
+    comments:
+      - "MIAPPE codename: anatomicalEntity"
+  sample_description:
+    description: >-
+      Any information not captured by the other sample fields, including
+      quantification, sample treatments and processing.
+    comments:
+      - "MIAPPE codename: sampleDesc"
+  collection_date:
+    required: true
+    range: date_or_datetime
+    description: The date and time when the sample was collected / harvested.
+    comments:
+      - "MIAPPE codename: collectionDate"
+  sample_external_ids:
+    multivalued: true
+    range: uriorcurie
+    description: >-
+      An identifier for the sample in a persistent repository. URIs are
+      recommended when possible.
+    comments:
+      - "MIAPPE codename: externalId"
+
+  # -- Observed variable ---------------------------------------------------
+  variable_id:
+    identifier: true
+    range: uriorcurie
+    description: >-
+      Code used to identify the variable in the data file. A variable ID must be
+      unique within a given investigation.
+    comments:
+      - "MIAPPE codename: variableId"
+  variable_name:
+    description: Name of the variable.
+    comments:
+      - "MIAPPE codename: variableName"
+  variable_accession_number:
+    range: uriorcurie
+    description: Accession number of the variable in the Crop Ontology.
+    comments:
+      - "MIAPPE codename: variableAccNumber"
+  trait:
+    range: Trait
+    inlined: true
+    description: The trait component of the observed variable.
+  method:
+    range: Method
+    inlined: true
+    description: The method component of the observed variable.
+  scale:
+    range: Scale
+    inlined: true
+    description: The scale component of the observed variable.
+
+  # -- Trait ---------------------------------------------------------------
+  trait_name:
+    required: true
+    description: >-
+      Name of the (plant or environmental) trait under observation.
+    comments:
+      - "MIAPPE codename: traitName"
+  trait_entity:
+    description: >-
+      Entity (part of the plant, whole plant, group of plants e.g. canopy) on
+      which the trait has been measured.
+    comments:
+      - "MIAPPE codename: traitEntity"
+  trait_entity_accession_number:
+    range: uriorcurie
+    description: >-
+      Accession number of the trait entity in a suitable controlled vocabulary
+      (Plant Ontology).
+    comments:
+      - "MIAPPE codename: traitEntityAccessionNumber"
+  trait_characteristic:
+    description: >-
+      Characteristic measured (e.g. size, volume, surface, concentration).
+    comments:
+      - "MIAPPE codename: traitCharacteristic"
+  trait_characteristic_accession_number:
+    range: uriorcurie
+    description: >-
+      Accession number of the trait characteristic in a suitable controlled
+      vocabulary (PATO).
+    comments:
+      - "MIAPPE codename: traitCharacteristicAccessionNumber"
+  trait_accession_number:
+    range: uriorcurie
+    description: >-
+      Accession number of the trait in a suitable controlled vocabulary (Crop
+      Ontology, Trait Ontology).
+    comments:
+      - "MIAPPE codename: traitAccNumber"
+
+  # -- Method --------------------------------------------------------------
+  method_name:
+    required: true
+    description: Name of the method of observation.
+    comments:
+      - "MIAPPE codename: methodName"
+  method_accession_number:
+    range: uriorcurie
+    description: >-
+      Accession number of the method in a suitable controlled vocabulary (Crop
+      Ontology, Trait Ontology).
+    comments:
+      - "MIAPPE codename: methodAccNumber"
+  method_description:
+    description: Textual description of the method.
+    comments:
+      - "MIAPPE codename: methodDesc"
+  method_reference:
+    range: uriorcurie
+    description: URI/DOI of reference describing the method.
+    comments:
+      - "MIAPPE codename: methodRef"
+
+  # -- Scale ---------------------------------------------------------------
+  scale_name:
+    required: true
+    description: Name of the scale associated with the variable.
+    comments:
+      - "MIAPPE codename: scaleName"
+  scale_accession_number:
+    range: uriorcurie
+    description: Accession number of the scale in a suitable controlled vocabulary.
+    comments:
+      - "MIAPPE codename: scaleAccNumber"
+  time_scale:
+    multivalued: true
+    description: >-
+      Name of the scale or unit of time with which observations of this type
+      were recorded in the data file (for time series studies).
+    comments:
+      - "MIAPPE codename: timeScale"
+
+  # -- Shared containment slots -------------------------------------------
+  studies:
+    range: Study
+    multivalued: true
+    inlined_as_list: true
+    required: true
+    description: The studies belonging to this investigation.
+  persons:
+    range: Person
+    multivalued: true
+    inlined_as_list: true
+    description: The people involved in this investigation or study.
+  data_files:
+    range: DataFile
+    multivalued: true
+    inlined_as_list: true
+    description: The data files associated with this study.
+  biological_materials:
+    range: BiologicalMaterial
+    multivalued: true
+    inlined_as_list: true
+    description: The biological materials studied in this study.
+  environment_parameters:
+    range: EnvironmentParameter
+    multivalued: true
+    inlined_as_list: true
+    description: The constant environment parameters of this study.
+  experimental_factors:
+    range: ExperimentalFactor
+    multivalued: true
+    inlined_as_list: true
+    description: The experimental factors varied in this study.
+  events:
+    range: Event
+    multivalued: true
+    inlined_as_list: true
+    description: The events occurring during this study or observation unit.
+  observation_units:
+    range: ObservationUnit
+    multivalued: true
+    inlined_as_list: true
+    required: true
+    description: The observation units of this study.
+  observed_variables:
+    range: ObservedVariable
+    multivalued: true
+    inlined_as_list: true
+    required: true
+    description: The observed variables measured in this study.
+  samples:
+    range: Sample
+    multivalued: true
+    inlined_as_list: true
+    description: The samples taken from this observation unit.
+
+  # -- GeoReferenced mixin slots ------------------------------------------
+  latitude:
+    range: float
+    description: Latitude in degrees, in decimal format (ISO 6709).
+  longitude:
+    range: float
+    description: Longitude in degrees, in decimal format (ISO 6709).
+  altitude:
+    description: Altitude provided in metres (m).
+  coordinates_uncertainty:
+    description: Circular uncertainty of the coordinates, preferably in metres (m).
+
+# ---------------------------------------------------------------------------
+# Enumerations
+# ---------------------------------------------------------------------------
 enums:
-  PersonStatus:
-    description:
-      The vital status of a person
+
+  LicenseEnum:
+    description: >-
+      License for the reuse of the data associated with an investigation. The
+      Creative Commons licenses are recommended.
     permissible_values:
-      ALIVE:
-        description: the person is living
-        meaning: PATO:0001421
-      DEAD:
-        description: the person is deceased
-        meaning: PATO:0001422
-      UNKNOWN:
-        description: the vital status is not known
-        todos:
-          - map this to an ontology
+      cc_by_4_0:
+        description: Creative Commons Attribution 4.0 International.
+      cc_by_sa_4_0:
+        description: Creative Commons Attribution-ShareAlike 4.0 International.
+      cc_by_nc_4_0:
+        description: Creative Commons Attribution-NonCommercial 4.0 International.
+      cc_by_nd_4_0:
+        description: Creative Commons Attribution-NoDerivatives 4.0 International.
+      cc0_1_0:
+        description: Creative Commons Public Domain Dedication.
+      unreported:
+        description: The license was not reported.
+
+  ObservationUnitTypeEnum:
+    description: >-
+      Type of observation unit. Use of other observation unit types is possible
+      but not recommended.
+    permissible_values:
+      study:
+        description: The whole study as an observation unit.
+      block:
+        description: A block in the experimental design.
+      sub_block:
+        description: A sub-block in the experimental design.
+      plot:
+        description: A plot in the experimental design.
+      sub_plot:
+        description: A sub-plot in the experimental design.
+      pot:
+        description: A pot containing one or more plants.
+      plant:
+        description: An individual plant.
+
+  ExperimentalFactorTypeEnum:
+    description: >-
+      Non-exhaustive list of experimental factor types, from MIAPPE Appendix II.
+      Most map to the Plant Environment Ontology (EO).
+    permissible_values:
+      seasonal_environment:
+        description: >-
+          A plant treatment involving an exposure to given conditions of
+          regional seasons.
+        meaning: EO:0007038
+      air_treatment_regime:
+        description: >-
+          Exposure to wind/air with varying degree of temperature.
+        meaning: EO:0007161
+      soil_temperature_regime:
+        description: >-
+          Exposure to varying degree of soil temperature.
+        meaning: EO:0007161
+      soil_treatment_regime:
+        description: >-
+          Growing plants and exposing them to soil growth media with varying
+          contents.
+        meaning: EO:0007161
+      antibiotic_regime:
+        description: A chemical treatment involving the use of antibiotics.
+        meaning: EO:0007041
+      chemical_administration:
+        description: An abiotic plant treatment involving the application of chemicals.
+        meaning: EO:0007189
+      biotic_treatment:
+        description: >-
+          Application of a biotic factor such as a microbe, insect, animal or
+          plant.
+        meaning: EO:0007357
+      fertilizer_regime:
+        description: A plant nutrient treatment involving the use of a fertilizer.
+        meaning: EO:0007085
+      fungicide_regime:
+        description: Application of a fungicide.
+        meaning: EO:0007268
+      gaseous_regime:
+        description: Application of a gas or a combination of gasses.
+        meaning: EO:0007023
+      gravity:
+        description: >-
+          Use of gravity to study responses in presence, absence or modified
+          levels of gravity.
+        meaning: EO:0007146
+      plant_hormone_regime:
+        description: Use of growth hormones.
+        meaning: EO:0007165
+      herbicide_regime:
+        description: Application of a herbicide.
+        meaning: EO:0007183
+      mechanical_treatment:
+        description: Application of a mechanical force.
+        meaning: EO:0007373
+      chemical_regime:
+        description: >-
+          Application of inorganic chemicals, nutriment or organic chemicals as
+          a supplement.
+        meaning: EO:0007044
+      humidity_regimen:
+        description: Exposure to varying degree of humidity.
+        meaning: EO:0007359
+      radiation_regime:
+        description: >-
+          Exposure to a radiation type, intensity or quantity (light, UV-B,
+          X-ray).
+        meaning: EO:0007151
+      rainfall_regime:
+        description: Exposure to a given amount of rainfall.
+        meaning: EO:0007181
+      salt_regime:
+        description: Use of salts as a supplement to growth media.
+        meaning: EO:0007185
+      watering_regime:
+        description: Exposure to watering frequencies.
+        meaning: EO:0007383
+      water_temperature_regime:
+        description: Exposure to water with varying degree of temperature.
+        meaning: EO:0007160
+      standing_water_regime:
+        description: Exposure to standing water during a plant's life span.
+        meaning: EO:0007282
+      pesticide_regime:
+        description: Application of a pesticide.
+        meaning: EO:0007167
+      ph_regime:
+        description: Exposure to varying levels of pH of the growth media.
+        meaning: EO:0007171
+      other_perturbation:
+        description: Any other perturbation not covered by the listed factor types.

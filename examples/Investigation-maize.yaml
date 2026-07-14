@@ -1,0 +1,91 @@
+# Example MIAPPE Investigation, adapted from the worked maize example in the
+# MIAPPE v1.1 checklist (MIAPPE_Checklist_Data_Model.tsv).
+investigation_id: EBI:12345678
+investigation_title: >-
+  Adaptation of Maize to Temperate Climates
+investigation_description: >-
+  The migration of maize from tropical to temperate climates was accompanied by
+  a dramatic evolution in flowering time.
+submission_date: "2013-01-01"
+public_release_date: "2013-03-11"
+license: cc_by_sa_4_0
+miappe_version: "1.1"
+associated_publications:
+  - associated_publication: doi:10.1371/journal.pone.0071377
+persons:
+  - person_id: orcid.org/0000-0001-6494-0008
+    person_name: Ines Chaves
+    person_email: ichaves@itqb.unl.pt
+    person_roles:
+      - corresponding author
+    person_affiliations:
+      - ITQB, Portugal
+studies:
+  - study_id: "http://phenome-fppn.fr/maugio/2013/t2351"
+    study_title: Maugio 2002
+    study_description: >-
+      2002 evaluation of male and female flowering time for a panel of 375 maize
+      lines representing the worldwide genetic diversity.
+    study_start_date: "2002-04-04"
+    study_end_date: "2002-10-01"
+    contact_institution: >-
+      UMR de Genetique Vegetale, INRA, Gif-sur-Yvette, France
+    location_country: FR
+    site_name: >-
+      INRA, UE Diascope - Domaine experimental de Melgueil - 34130 Mauguio - France
+    location_latitude: 43.619264
+    location_longitude: 3.967454
+    location_altitude: 100 m
+    experimental_design_description: >-
+      Lines were repeated twice at each location using a complete block design.
+    experimental_design_type: CO_715:0000145
+    observation_unit_level_hierarchy: block>rep>plot
+    observation_unit_description: >-
+      Observation units consisted in individual plots of a row of 15 plants.
+    growth_facility_description: field environment condition
+    growth_facility_type: CO_715:0000162
+    cultural_practices: >-
+      Irrigation was applied according to needs during summer.
+    biological_materials:
+      - biological_material_id: INRA:W95115_inra_2001
+        organism: NCBITaxon:4577
+        genus: Zea
+        species: mays
+        material_source:
+          material_source_id: INRA:W95115_inra
+          material_source_accession_number: W95115_inra
+    experimental_factors:
+      - experimental_factor_type: watering_regime
+        experimental_factor_description: Daily watering 1 L per plant.
+        experimental_factor_values:
+          - Watered
+          - Unwatered
+    events:
+      - event_type: Planting
+        event_description: Sowing using seed drill.
+        event_dates:
+          - "2002-04-04"
+    observation_units:
+      - observation_unit_id: plot:894
+        observation_unit_type: plot
+        spatial_distribution:
+          - block:1
+          - plot:894
+        observation_unit_factor_values:
+          - Watered
+        biological_material:
+          - INRA:W95115_inra_2001
+        samples:
+          - sample_id: CEA:BE00034067
+            anatomical_entity: PO:0000003
+            collection_date: "2005-08-15T15:52:01+00:00"
+            development_stage: PO:0025094
+    observed_variables:
+      - variable_id: Ant_Cmp_Cday
+        variable_name: Anthesis computed in growing degree days
+        trait:
+          trait_name: Anthesis time
+        method:
+          method_name: Growing degree days to anthesis
+        scale:
+          scale_name: "Cday"
