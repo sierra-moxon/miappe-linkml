@@ -2,598 +2,602 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/about/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/BiologicalMaterial/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/Boolean/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/Curie/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/DataFile/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/Date/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/DateOrDatetime/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/Datetime/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/Decimal/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/Double/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/EnvironmentParameter/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/Event/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/ExperimentalFactor/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/ExperimentalFactorTypeEnum/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/Float/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/GeoReferenced/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/Integer/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/Investigation/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/Jsonpath/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/Jsonpointer/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/LicenseEnum/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/MaterialSource/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/Method/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/Ncname/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/Nodeidentifier/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/Objectidentifier/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/ObservationUnit/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/ObservationUnitTypeEnum/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/ObservedVariable/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/Person/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/Publication/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/Sample/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/Scale/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/Sparqlpath/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/String/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/Study/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/Time/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/Trait/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/Uri/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/Uriorcurie/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/altitude/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/anatomical_entity/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/associated_publication/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/associated_publications/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/biological_material/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/biological_material_external_ids/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/biological_material_id/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/biological_material_preprocessing/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/biological_materials/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/collection_date/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/contact_institution/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/coordinates_uncertainty/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/cultural_practices/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/data_file_description/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/data_file_link/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/data_file_version/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/data_files/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/development_stage/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/environment_parameter_name/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/environment_parameter_value/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/environment_parameters/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
+    </url>
+    <url>
+         <loc>https://sierra-moxon.github.io/miappe-linkml/elements/erdiagram/</loc>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/event_accession_number/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/event_dates/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/event_description/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/event_type/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/events/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/experimental_design_description/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/experimental_design_map/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/experimental_design_type/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/experimental_factor_description/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/experimental_factor_type/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/experimental_factor_values/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/experimental_factors/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/genus/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/growth_facility_description/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/growth_facility_type/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/infraspecific_name/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/investigation_description/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/investigation_id/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/investigation_title/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/latitude/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/license/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/location_altitude/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/location_country/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/location_latitude/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/location_longitude/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/longitude/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/material_source/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/material_source_accession_name/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/material_source_accession_number/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/material_source_description/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/material_source_doi/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/material_source_id/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/material_source_institute_code/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/material_source_institute_name/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/material_source_other_ids/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/method/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/method_accession_number/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/method_description/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/method_name/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/method_reference/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/miappe-linkml/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/miappe_version/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/observation_unit_description/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/observation_unit_external_ids/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/observation_unit_factor_values/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/observation_unit_id/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/observation_unit_level_hierarchy/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/observation_unit_type/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/observation_units/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/observed_variables/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/organism/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/person_affiliations/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/person_email/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/person_id/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/person_name/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/person_roles/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/persons/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/public_release_date/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/sample_description/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/sample_external_ids/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/sample_id/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/samples/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/scale/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/scale_accession_number/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/scale_name/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/site_name/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/spatial_distribution/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/species/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/studies/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/study_description/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/study_end_date/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/study_id/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/study_start_date/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/study_title/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/submission_date/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/time_scale/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/trait/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/trait_accession_number/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/trait_characteristic/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/trait_characteristic_accession_number/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/trait_entity/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/trait_entity_accession_number/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/trait_name/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/variable_accession_number/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/variable_id/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/miappe-linkml/elements/variable_name/</loc>
-         <lastmod>2026-07-14</lastmod>
+         <lastmod>2026-07-15</lastmod>
     </url>
 </urlset>
