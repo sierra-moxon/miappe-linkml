@@ -30,6 +30,7 @@ config_yaml := if env_var_or_default("LINKML_GENERATORS_CONFIG_YAML", "") != "" 
   ""
 }
 gen_doc_args := env_var_or_default("LINKML_GENERATORS_DOC_ARGS", "")
+gen_erdiagram_args := env_var_or_default("LINKML_GENERATORS_ERDIAGRAM_ARGS", "")
 gen_java_args := env_var_or_default("LINKML_GENERATORS_JAVA_ARGS", "")
 gen_owl_args := env_var_or_default("LINKML_GENERATORS_OWL_ARGS", "")
 gen_pydantic_args := env_var_or_default("LINKML_GENERATORS_PYDANTIC_ARGS", "")
@@ -237,7 +238,12 @@ _gen-yaml:
   uv run gen-yaml {{source_schema_path}} > {{distrib_schema_path}}/{{schema_name}}.yaml
 
 # Overridable recipe to add project-specific artifacts to the distribution schema path
-_add-artifacts:
+_add-artifacts: _gen-erdiagram
+
+# Generate a Mermaid ER diagram of the full schema for the documentation site
+_gen-erdiagram:
+  printf '# Entity-Relationship Diagram\n\nA Mermaid entity-relationship diagram of the full %s schema, generated from the source with `gen-erdiagram`.\n\n' "{{schema_name}}" > {{docdir}}/erdiagram.md
+  uv run gen-erdiagram {{gen_erdiagram_args}} {{source_schema_path}} >> {{docdir}}/erdiagram.md
 
 # Run documentation server
 _serve:

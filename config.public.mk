@@ -27,3 +27,7 @@ LINKML_GENERATORS_OWL_ARGS=
 ## pass args to pydantic generator which isn't supported by gen-project
 ## https://github.com/linkml/linkml/issues/2537
 LINKML_GENERATORS_PYDANTIC_ARGS=
+
+## pass args to the ER-diagram generator used to build the full-schema diagram
+##   (e.g. --structural, --exclude-attributes, --include-upstream)
+LINKML_GENERATORS_ERDIAGRAM_ARGS=
